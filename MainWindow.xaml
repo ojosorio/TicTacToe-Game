@@ -1,0 +1,93 @@
+﻿<Window x:Class="Test2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Tic Tac Toe Game" Height="503" Width="800" ResizeMode="NoResize">
+    <Grid Margin="0,0,0,-2">
+
+        <Border x:Name="brPlayerOneColor" BorderThickness="1,1,1,7" HorizontalAlignment="Left" Height="59" Margin="156,10,0,0" VerticalAlignment="Top" Width="202" CornerRadius="4">
+            <Border.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FF76B850" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+        </Border>
+
+        <Border x:Name="brPlayerTwo" BorderBrush="#FFBDBDBD" BorderThickness="1" HorizontalAlignment="Left" Height="59" Margin="436,10,0,0" VerticalAlignment="Top" Width="202" CornerRadius="4"/>
+
+        <Border BorderBrush="#FF8EC56E" BorderThickness="1" HorizontalAlignment="Left" Height="326" Margin="0,77,0,0" VerticalAlignment="Top" Width="794" Background="#FF8EC56E"/>
+
+        <ItemsControl x:Name="icBoard" ItemsSource="{Binding Cells}" Width="280" Height="280" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="257,100,257,96" FontSize="36" FontFamily="Arial Rounded MT Bold" Background="Black">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="{Binding Rows}" Columns="{Binding Columns}"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Content="{Binding Sign}" IsEnabled="{Binding CanSelect}" Click="CellClick" ForceCursor="False" Cursor="Pen">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#FF8EC56E"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FF8EC56E"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <Label Content="Player 2    (O)" Margin="468,22,177,403" FontFamily="Arial Rounded MT Bold" FontSize="20"/>
+        <Button x:Name="btnRestartGame" Content="Restart Game" HorizontalAlignment="Left" Margin="338,423,0,0" VerticalAlignment="Top" Width="119" Click="btnRestartGame_Click" FontFamily="Arial Rounded MT Bold" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" Foreground="#FF6C9C50">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF8EC56E"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Label Content="Player 1    (X)" Margin="189,21,456,404" FontSize="20" FontFamily="Arial Rounded MT Bold"/>
+        <Border x:Name="brPlayerTwoColor" BorderThickness="1,1,1,7" HorizontalAlignment="Left" Height="59" Margin="436,10,0,0" VerticalAlignment="Top" Width="202" CornerRadius="4">
+            <Border.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FF76B850" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+        </Border>
+        <Border x:Name="brPlayerOne" BorderBrush="#FFBDBDBD" BorderThickness="1" HorizontalAlignment="Left" Height="59" Margin="156,10,0,0" VerticalAlignment="Top" Width="202" CornerRadius="4"/>
+        <Label x:Name="lblSign" Content="X" HorizontalAlignment="Left" Margin="363,163,0,0" VerticalAlignment="Top" FontSize="90" FontFamily="Arial Rounded MT Bold" Width="246"/>
+        <Label x:Name="lblDraw" Content="Draw!" HorizontalAlignment="Left" Margin="364,218,0,0" VerticalAlignment="Top" FontFamily="Arial Rounded MT Bold" FontSize="20" Width="248"/>
+        <Label x:Name="lblWinner" Content="Winner!" HorizontalAlignment="Left" Margin="358,253,0,0" VerticalAlignment="Top" FontFamily="Arial Rounded MT Bold" FontSize="20" Width="256"/>
+
+    </Grid>
+</Window>
